@@ -1,18 +1,23 @@
-import { fetchData } from "../../redux/slice/ecomSlice";
+import { useEffect } from "react";
+import { fetchData } from "../../redux/slice/productSlice";
 import "./mainFile.css";
 import { useDispatch, useSelector } from "react-redux";
 
 function MainFile() {
   const dispatch = useDispatch();
+  const { isLoading, data } = useSelector((state) => state.ecom);
+
+  useEffect(() => {
+    dispatch(fetchData());
+  }, [dispatch]);
+
+  if (isLoading) return <h1>Loading...</h1>;
+
   return (
     <>
       <h3>Home Page</h3>
-      <button
-        className="border-2 p-2 bg-blue-600 text-white cursor-cell"
-        onClick={(e) => dispatch(fetchData())}
-      >
-        Fetch Data
-      </button>
+      
+      <ul>{data && data.map((item) => <li key={item.id}>{item.title}</li>)}</ul>
     </>
   );
 }
