@@ -7,7 +7,7 @@ function Header() {
   return (
     <>
       <div className="header-container">
-        <h1>E-Commerce Website</h1>
+        <h1 className="header-title">E-Commerce Website</h1>
         <div className="nav-container">
           <button className="link">
             <IoIosSearch/>

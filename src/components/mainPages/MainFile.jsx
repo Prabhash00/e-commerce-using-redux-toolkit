@@ -4,44 +4,61 @@ import "./mainFile.css";
 import { useDispatch, useSelector } from "react-redux";
 import { Carousel } from "react-responsive-carousel";
 import "react-responsive-carousel/lib/styles/carousel.min.css";
+import img1 from "../images/img1.jpg";
+import img2 from "../images/img2.jpg";
+import img3 from "../images/img3.jpg";
+import img4 from "../images/img4.jpg";
 
 function MainFile() {
   const dispatch = useDispatch();
-  const { isLoading, data } = useSelector((state) => state.products);
-  const images = [
-    "https://mobirise.com/extensions/commercem4/assets/images/galleries-1-1200x800.png",
-    "https://png.pngtree.com/thumb_back/fh260/background/20221218/pngtree-technology-and-multimedia-online-shopping-concept-sale-tv-buy-photo-image_43548278.jpg",
-  ];
+  const { data } = useSelector((state) => state.products);
+  const images = [img1, img2, img3, img4];
 
   useEffect(() => {
     dispatch(fetchData());
   }, [dispatch]);
 
-  if (isLoading) return <h1>Loading...</h1>;
-
   return (
     <>
       <Carousel
-        useKeyboardArrows
         autoPlay
-        interval={1500}
+        interval={3000}
         infiniteLoop
-        showThumbs={true}
-        showStatus={true}
-        className="w-full"
+        showThumbs={false}
+        showStatus={false}
+        className="carousel-fullwidth"
       >
         {images.map((URL, index) => (
-          <div key={index} className="w-full h-full">
+          <div key={index}>
             <img
               src={URL}
               alt={`carousel-image-${index}`}
-              className="w-[auto] h-auto max-h-[950px] object-contain"
+              className="carousel-img"
             />
           </div>
         ))}
       </Carousel>
 
-      <ul>{data && data.map((item) => <li key={item.id}>{item.title}</li>)}</ul>
+      <div className="grid-container">
+        <div className="card-container">
+        <h2 className="text-[28px] font-bold ">Products</h2>
+          <div className="product-grid">
+            {data?.map((item) => (
+              <div className="product-card" key={item.id}>
+                <img
+                  src={item.image}
+                  alt="{item.title}"
+                  className="product-image"
+                />
+                <h4 className="product-title">{item?.title}</h4>
+                <p className="product-price">₹{item?.price}</p>
+                
+                <button className="bg-blue-500 p-2 text-white rounded mt-2 hover:bg-blue-600 hover:cursor-pointer">Add To Cart</button>
+              </div>
+            ))}
+          </div>
+        </div>
+      </div>
     </>
   );
 }
