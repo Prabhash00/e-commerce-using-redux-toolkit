@@ -3,10 +3,9 @@ import { FaCartShopping } from "react-icons/fa6";
 import { IoIosSearch } from "react-icons/io";
 import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
 
-
 import { Link } from "react-router";
 
-function Header() {
+function Header({ count }) {
   return (
     <>
       <div className="header-container">
@@ -22,10 +21,16 @@ function Header() {
             Product Category
             <RiArrowDropDownLine />
           </Link>
-          <Link className="link" to="/cart">
-            <FaCartShopping />
-            <div className="count">1</div>
-          </Link>
+          {count === 0 ? (
+            <Link className="link" to="/cart">
+              <FaCartShopping />
+            </Link>
+          ) : (
+            <Link className="link" to="/cart">
+              <FaCartShopping />
+              <div className="count">{count}</div>
+            </Link>
+          )}
         </div>
       </div>
     </>

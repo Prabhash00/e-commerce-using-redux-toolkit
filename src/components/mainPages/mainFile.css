@@ -57,14 +57,13 @@ body {
   overflow-x: hidden;
 }
 
-.card-container{
+.card-container {
   padding: 50px;
-
 }
 
 .product-grid {
   display: grid;
-  grid-template-columns: repeat(4,1fr);
+  grid-template-columns: repeat(4, 1fr);
   gap: 2rem;
   margin-top: 2rem;
 }
@@ -102,3 +101,47 @@ body {
   padding: 5px;
 }
 
+.footer-parent {
+  padding: 20px;
+  background-color: rgb(235, 141, 141);
+}
+
+.footer-container {
+  display: grid;
+  grid-template-columns: repeat(3, 1fr);
+  gap: 20px;
+}
+
+.footer-heading {
+  font-size: 20px;
+  font-weight: bold;
+}
+
+.social-media {
+  display: flex;
+  font-size: 25px;
+  margin: 20px;
+  gap: 20px;
+  cursor: pointer;
+}
+
+.footer-base{
+  display: flex;
+  justify-content: center;
+  align-content: center;
+  gap: 60px;
+  padding-top: 10px;
+  cursor: pointer;
+}
+
+.line {
+  border-bottom: 1px solid #adadad;
+}
+
+.link-footer{
+  display: flex;
+  flex-direction: row;
+  align-items: center;
+  cursor: pointer;
+  margin-top: 10px;
+}
