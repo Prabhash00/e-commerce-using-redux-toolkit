@@ -8,11 +8,15 @@ import img1 from "../images/img1.jpg";
 import img2 from "../images/img2.jpg";
 import img3 from "../images/img3.jpg";
 import img4 from "../images/img4.jpg";
+import { IoIosEye } from "react-icons/io";
+import { FaCartShopping } from "react-icons/fa6";
+import { useNavigate } from "react-router";
 
 function MainFile() {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.products);
   const images = [img1, img2, img3, img4];
+  const navigate = useNavigate();
 
   useEffect(() => {
     dispatch(fetchData());
@@ -41,7 +45,7 @@ function MainFile() {
 
       <div className="grid-container">
         <div className="card-container">
-        <h2 className="text-[28px] font-bold ">Products</h2>
+          <h2 className="text-[28px] font-bold ">Products</h2>
           <div className="product-grid">
             {data?.map((item) => (
               <div className="product-card" key={item.id}>
@@ -52,8 +56,18 @@ function MainFile() {
                 />
                 <h4 className="product-title">{item?.title}</h4>
                 <p className="product-price">₹{item?.price}</p>
-                
-                <button className="bg-blue-500 p-2 text-white rounded mt-2 hover:bg-blue-600 hover:cursor-pointer">Add To Cart</button>
+                <div className="flex justify-evenly ">
+                  <button
+                    className="btn-view w-20 flex justify-center items-center gap-1"
+                    onClick={() => navigate("/product")}
+                  >
+                    <IoIosEye />
+                    View
+                  </button>
+                  <button className="btn-cart w-35 flex justify-center items-center gap-1">
+                    <FaCartShopping /> Add To Cart
+                  </button>
+                </div>
               </div>
             ))}
           </div>

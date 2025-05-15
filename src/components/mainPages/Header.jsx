@@ -1,6 +1,9 @@
 import React from "react";
 import { FaCartShopping } from "react-icons/fa6";
 import { IoIosSearch } from "react-icons/io";
+import { RiArrowDropDownLine, RiArrowDropUpLine } from "react-icons/ri";
+
+
 import { Link } from "react-router";
 
 function Header() {
@@ -10,13 +13,14 @@ function Header() {
         <h1 className="header-title">E-Commerce Website</h1>
         <div className="nav-container">
           <button className="link">
-            <IoIosSearch/>
+            <IoIosSearch />
           </button>
           <Link className="link" to="/">
             Home
           </Link>
-          <Link className="link" to="/product">
+          <Link className="link" to="/prod-cate">
             Product Category
+            <RiArrowDropDownLine />
           </Link>
           <Link className="link" to="/cart">
             <FaCartShopping />
