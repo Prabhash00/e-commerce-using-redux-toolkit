@@ -1,10 +1,12 @@
-import React from "react";
+import React, { useState } from "react";
 import { FaFacebook, FaInstagram, FaLinkedin } from "react-icons/fa";
 import { FaRegCopyright, FaXTwitter } from "react-icons/fa6";
 import { Link } from "react-router";
 import { RiArrowDropRightLine, RiArrowDropUpLine } from "react-icons/ri";
 
 function Footer() {
+  const [email, setEmail] = useState("");
+
   const scrollToTop = () => {
     window.scrollTo({
       top: 0,
@@ -12,6 +14,13 @@ function Footer() {
       behavior: "smooth",
     });
   };
+
+  const saveEmail = (e) => {
+    e.preventDefault();
+    console.log(email);
+    setEmail("");
+  };
+
   return (
     <>
       <div className="footer-parent">
@@ -22,11 +31,13 @@ function Footer() {
               Join our Community for latest newsletters by subscribing us via
               email.
             </p>
-            <form>
+            <form onSubmit={saveEmail}>
               <input
                 className="border-1 rounded p-2 m-4 bg-gray-200"
                 type="email"
                 placeholder="Email Address"
+                value={email}
+                onChange={(e) => setEmail(e.target.value)}
               />
               <button
                 type="submit"
@@ -62,7 +73,7 @@ function Footer() {
             <h1 className="footer-heading">NAVIGATE</h1>
             <span>
               <button className="link-footer" onClick={scrollToTop}>
-                Scroll To Top <RiArrowDropUpLine className="text-[40px]"/>
+                Scroll To Top <RiArrowDropUpLine className="text-[40px]" />
               </button>
 
               <Link className="link-footer" to={"/"}>

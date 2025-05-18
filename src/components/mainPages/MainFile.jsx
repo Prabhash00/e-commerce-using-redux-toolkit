@@ -64,7 +64,7 @@ function MainFile({ count, setCount }) {
                 <div className="flex justify-evenly gap-2">
                   <button
                     className="btn-view w-20"
-                    onClick={() => navigate("/product")}
+                    onClick={() => navigate(`/product/${item.id}`)}
                   >
                     <IoIosEye />
                     View
