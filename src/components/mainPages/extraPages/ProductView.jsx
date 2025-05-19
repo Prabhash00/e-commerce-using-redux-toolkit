@@ -2,6 +2,7 @@ import React, { useEffect } from "react";
 import { useDispatch, useSelector } from "react-redux";
 import { useParams } from "react-router";
 import { fetchData } from "../../../redux/slice/productSlice";
+import { addToCart } from "../../../redux/slice/cartSlice";
 
 function ProductView() {
   const { id } = useParams();
@@ -19,6 +20,10 @@ function ProductView() {
       </div>
     );
   }
+
+  const handleAddToCart = (id) => {
+    dispatch(addToCart(id));
+  };
 
   const product = data.find((item) => item.id === parseInt(id));
 
@@ -43,7 +48,12 @@ function ProductView() {
             <strong>Description: </strong>
             {product.description}
           </p>
-          <button className="btn-cart w-50 h-15 ml-4 mb-8">Add To Cart</button>
+          <button
+            className="btn-cart w-50 h-15 ml-4 mb-8"
+            onClick={() => handleAddToCart(product.id)}
+          >
+            Add To Cart
+          </button>
         </div>
       </div>
     </>

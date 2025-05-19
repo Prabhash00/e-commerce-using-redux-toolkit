@@ -1,32 +1,27 @@
-import { createAsyncThunk, createSlice } from "@reduxjs/toolkit";
-
-
-export const fetchCart = createAsyncThunk('fetchCart', async () => {
-    const response = await fetch("https://fakestoreapi.com/carts/1") //remove id
-    return response.json();
-});
+import { createSlice } from "@reduxjs/toolkit";
 
 const cartSlice = createSlice({
-    name: 'cart',
+    name: "cart",
     initialState: {
-        isLoading: false,
         items: [],
-        isError: false,
     },
-    extraReducers: (builder) => {
-        builder.addCase(fetchCart.pending, (state) => {
-            state.isLoading = true;
-        })
-        builder.addCase(fetchCart.fulfilled, (state, action) => {
-            state.isLoading = false;
-            state.data = action.payload;
-            console.log("Cart pulled", action.payload);//will remove
-        })
-        builder.addCase(fetchCart.rejected, (state, action) => {
-            console.log("error in cart", action.payload);
-            state.isError = true;
-            state.isLoading = false;
-        })
+    reducers: {
+        addToCart: (state, action) => {
+            const existing = state.items.find(item => item.id === action.payload)
+            if (existing) {
+                existing.quantity += 1
+            } else {
+                state.items.push({ id: action.payoad, quantity: 1 })
+            }
+        },
+        removeFromCart: (state, action) => {
+            state.items = state.items.filter(item => item.id !== action.payload)
+        },
+        clearCart: (state) => {
+            state.items = [];
+        }
     }
 })
+
+export const{addToCart,removeFromCart,clearCart}=cartSlice.actions
 export default cartSlice.reducer;

@@ -11,8 +11,10 @@ import img4 from "../images/img4.jpg";
 import { IoIosEye } from "react-icons/io";
 import { FaCartShopping } from "react-icons/fa6";
 import { useNavigate } from "react-router";
+import { addToCart } from "../../redux/slice/cartSlice";
 
-function MainFile({ count, setCount }) {
+
+function MainFile() {
   const dispatch = useDispatch();
   const { data } = useSelector((state) => state.products);
   const images = [img1, img2, img3, img4];
@@ -22,9 +24,8 @@ function MainFile({ count, setCount }) {
     dispatch(fetchData());
   }, [dispatch]);
 
-  const addToCart = () => {
-    setCount(count + 1);
-    console.log(count);
+  const handleAddToCart = (id) => {
+  dispatch(addToCart(id))    
   };
 
   return (
@@ -69,7 +70,7 @@ function MainFile({ count, setCount }) {
                     <IoIosEye />
                     View
                   </button>
-                  <button className="btn-cart w-35 " onClick={addToCart}>
+                  <button className="btn-cart w-35 " onClick={()=>handleAddToCart(item.id)}>
                     <FaCartShopping /> Add To Cart
                   </button>
                 </div>

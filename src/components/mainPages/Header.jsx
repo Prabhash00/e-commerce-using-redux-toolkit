@@ -1,14 +1,18 @@
 import React from "react";
 import { FaCartShopping } from "react-icons/fa6";
+import { useSelector } from "react-redux";
 
 import { Link } from "react-router";
 
-function Header({ count }) {
+function Header() {
+  const cartItems = useSelector((state) => state.cart.items);
+  const count = cartItems.reduce((sum, item) => sum + item.quantity, 0);
+
   return (
     <>
       <div className="header-container">
         <h1 className="header-title">
-          <Link to={'/'}>E-Commerce Website</Link>
+          <Link to={"/"}>E-Commerce Website</Link>
         </h1>
 
         <div className="nav-container">
