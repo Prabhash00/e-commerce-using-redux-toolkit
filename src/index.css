@@ -9,3 +9,8 @@
   @apply bg-gray-100 p-2 border border-gray-400 rounded flex justify-center items-center gap-1 mt-2 hover:bg-green-500 hover:text-white 
   hover:cursor-pointer hover:border-none;
 }
+
+.btn-remove{
+  @apply bg-gray-100 p-2 border border-gray-400 rounded flex justify-center items-center gap-1 mt-2 hover:bg-red-500 hover:text-white 
+  hover:cursor-pointer ;
+}
