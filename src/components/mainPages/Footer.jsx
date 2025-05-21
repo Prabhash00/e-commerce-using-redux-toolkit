@@ -17,7 +17,7 @@ function Footer() {
 
   const saveEmail = (e) => {
     e.preventDefault();
-    console.log(email);
+    alert(email);
     setEmail("");
   };
 
