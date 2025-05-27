@@ -265,3 +265,14 @@ body {
   align-items: center;
   gap: 5px;
 }
+
+.slider-track {
+  background-color: blue;
+}
+.slider-handle {
+  border-color: blue;
+  background-color: #fff;
+}
+.slider-rail {
+  background-color: #d9d9d9;
+}

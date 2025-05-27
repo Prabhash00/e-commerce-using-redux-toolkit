@@ -5,11 +5,15 @@ import App from "./App.jsx";
 import { BrowserRouter } from "react-router";
 import { Provider } from "react-redux";
 import { store } from "./redux/store.js";
+import { StyledEngineProvider } from "@mui/material";
+
 
 createRoot(document.getElementById("root")).render(
   <BrowserRouter>
-    <Provider store={store}>
-      <App />
-    </Provider>
+    <StyledEngineProvider injectFirst>
+      <Provider store={store}>
+        <App />
+      </Provider>
+    </StyledEngineProvider>
   </BrowserRouter>
 );
