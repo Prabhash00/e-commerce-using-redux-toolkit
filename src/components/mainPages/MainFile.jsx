@@ -26,14 +26,14 @@ function MainFile() {
   const images = [img1, img2, img3, img4];
   const navigate = useNavigate();
 
-  // Initialize prices and maxPrice safely
+  
   const prices = data?.map((item) => item.price) || [];
   const minPrice = 0;
   const maxPrice = prices.length > 0 ? Math.ceil(Math.max(...prices)) : 1000;
   const [value, setValue] = useState(maxPrice);
   const [currentCategories, setCurrentCategories] = useState("");
 
-  // Get unique categories from data
+  
   const categories = data
     ? ["All", ...new Set(data.map((item) => item.category))]
     : ["All"];
